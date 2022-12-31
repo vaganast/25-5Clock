@@ -1,0 +1,76 @@
+* { 
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: blueviolet;
+}
+
+.wrapper {  
+  background-image: linear-gradient(135deg, #f34079 40%, #fc894d);
+  text-align: center;  
+  width: 400px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5px;
+}
+
+h2 {
+  background-color: rgb(116, 5, 79);
+  color: rgb(200, 106, 40);
+  font-size: 40px;
+  margin: 0 0 5px 0;
+}
+
+h3 {
+  color: rgb(89, 27, 148);
+}
+
+.container {
+  display: flex;
+  padding: 0 10px 5px 10px;
+  justify-content: space-around;
+}
+
+.break-session-wrap {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+}
+
+button {
+  background-color: inherit;
+  border: none;
+  cursor: pointer; 
+  color: rgb(229, 213, 202);
+  font-size: 20px;
+}
+button:hover {
+  color: blueviolet;
+}
+
+p {
+  margin: 0 5px 0 5px ;
+  text-align: center;
+  font-size: 20px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 8px 0;
+}
+
+.timer-wrap {
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  background-color: rgb(219, 42, 42);
+  border: 4px solid blueviolet;  
+  border-radius: 20px;
+}
