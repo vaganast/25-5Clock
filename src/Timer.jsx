@@ -2,16 +2,15 @@ import React, { useState, useRef, useEffect } from 'react'
 
 const Timer = ({ sTime, bTime }) => {
   //sTime=25m bTime=5m
-  let sesTime = sTime * 60
-  let breTime = bTime * 60
-	// We need ref in this, because we are dealing
-	// with JS setInterval to keep track of it and
-	// stop it when needed
-	const Ref = useRef(null);
+  let sessionMinutes = sTime * 60
+  let breakMinutes = bTime * 60
 
 	// The state for our timer
 	const [timer, setTimer] = useState();
-  const [counting, setCounting] = useState(false)
+  const [mode, setMode] = useState('work'); // work/break/null
+
+  const modeRef = useRef(mode);
+  const timerId = useRef();
 
   // formation for time via props
   const formatTime = (time) => {
@@ -24,22 +23,26 @@ const Timer = ({ sTime, bTime }) => {
 
   //update the display time
   useEffect(() => {  
-   setTimer(sesTime)
-  }, [sesTime])	
+   setTimer(sessionMinutes)
+  }, [sessionMinutes])	
 
+  //start / stop / reset functions
   const startCount = () => {
-    // if (Ref.current) clearInterval(Ref.current);
-    if (!counting) {
-		let ses = setInterval(() => {
-			setTimer((prev) => prev - 1)
-		}, 1000)
-    //store for pause resume
-    localStorage.clear()
-    localStorage.setItem('interval-id', ses)    
-    }
-     if (counting) {
+    timerId.current = setInterval(() => {
+      setTimer((prev) => prev - 1)
+    }, 1000)
+  }
 
-     }
+  const stopCount = () => {
+    clearInterval(timerId.current)
+    timerId.current = 0
+  }
+
+  const resetCount = () => {
+    stopCount()
+    if (timer) {
+      setTimer(sessionMinutes)
+    }
   }
 
 	return (
@@ -47,6 +50,8 @@ const Timer = ({ sTime, bTime }) => {
      <p id="timer-label">Session / break </p>
      <p id="time-left" style={{fontSize: '40px'}}>{formatTime(timer)}</p>
      <button onClick={startCount}>test count button</button>
+     <button onClick={stopCount}>test stop count button</button>
+     <button onClick={resetCount}>test reset count button</button>
     </>
 	)
 }
